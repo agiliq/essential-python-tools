@@ -13,6 +13,7 @@ Essential Python Tools
    linters  
    environment_management   
    code_management
+   documentation
 
 
 
