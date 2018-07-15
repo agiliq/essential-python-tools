@@ -8,7 +8,10 @@ Essential Python Tools
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Table of Contents:
+
+   linters  
+   environment_management   
 
 
 
