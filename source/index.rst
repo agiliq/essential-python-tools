@@ -10,6 +10,7 @@ Essential Python Tools
    :maxdepth: 2
    :caption: Table of Contents:
 
+   repl_and_debugging
    linters  
    environment_management   
    code_management
