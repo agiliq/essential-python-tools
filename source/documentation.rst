@@ -31,8 +31,8 @@ When to use `markdown` and `reStructuredText`
 + It you want to a write a documentation consisting of many in-line programs and tables then it is better to use `reStructuredText`.
 
 
-.. So, which one to use ? Generally it is:
-.. - For small documentation use `markdown` otherwise use `reStructuredText`. 
+So, which one to use ? 
+  Generally it is -  For small documentation use `markdown` otherwise use `reStructuredText`. 
 .. - 
 
 
