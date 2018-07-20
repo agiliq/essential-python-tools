@@ -7,18 +7,78 @@ Ipython
 
 .. IPython is actually a python interpreter. It improves exploration, debugging, and optimization of the python code.
 
+You can install Ipython via pip( :code:`pip install ipython` ) but we suggest installing IPython using the `Python Anaconda distribution <https://www.anaconda.com/download/>`_. 
+
+Anaconda is an open-source Python distribution which provides us with many python tools. When installed, Anaconda includes: core Python language, IPython, Jupyter Notebook and many data-science packages.
+
+To use Ipython:
+
+.. code-block:: python
+
+    $ ipython
+
+IPython has more features than python like Syntax highlighting, Proper Intendation,
+
+**Syntax highlighting**
+
+.. image:: _static/syntax-ipython.png
+    
+
+**Tab-completion**
+ 
+.. image:: _static/tab-complete-ipython.png
+    
+
+**Documentation** can be viewed by putting a :code:`?` after the command.
+
+.. image:: _static/documentation-ipython.png
+
+
 Jupyter
 ++++++++
 `Jupyter Notebook <http://jupyter.org/>`_  is a open source application for writing and sharing code and text.
 It is one of the popular data science tool in python.
 
+.. The Jupyter Notebook is a web application that allows us to create documents that contain executable code, formulas and equations, data visualizations, rich text editor, improved graphical capabilities and many other features.
+
+
 It has replaced IPython notebook, which initially supported only python but now later started supporting many languages. IPython notebooks was started to make working with python easy and interactive. IPython provides python backend (also known as kernel) for Jupyter
+
+If you installed Python using Anaconda, then you have the Jupyter Notebook installed. To start the notebook:
+
+.. code-block:: python
+
+    $ jupyter notebook
+
+After starting Jupyter notebook, we'll notice that a tab will open in a web browser open. It will run the Jupyter Notebook on a local port, such as http://localhost:8888. It will list out the contents of the system in a directory format. To create new "notebooks" just click "New" and then selecting the python version.
+
+
+ Using Jupyter Notebook we can create shareable files that can support live code, charts, graphs, math, different forms of markup (Markdown, etc.), and much more.
+
+
+.. image:: _static/jupyter.png
+
+**To know more about 'Jupyter Notebook' check** - http://jupyter-notebook.readthedocs.io/en/stable/
 
 
 
 pdb and ipdb
 ++++++++++++++
 
-`pdb` is a debugging tool that is part of python's standard library. It is an interactive source code debugger for Python programs.
+pdb
+=====
 
-`ipdb` exports functions to access the IPython debugger, which features tab completion, syntax highlighting, better tracebacks, better introspection with the same interface as the `pdb` module.
+`pdb <https://docs.python.org/3/library/pdb.html>`_ is a debugging tool that is part of python's standard library. It is an interactive source code debugger for Python programs.
+
+Using pdb, we can set `breakpoints <https://en.wikipedia.org/wiki/Breakpoint>`_ at any point of our program to stop it and check for errors or the status of our running program.
+
+    **pbd help speed up the debugging process a lot faster than using simple print() statements everywhere.**
+
+
+
+ipdb
+=====
+
+ipdb, the Ipython-enabled python debugger, with all pdb’s features and adds ipython support for the interactive shell, like tab completion, color support, magic functions and more. We can use ipdb just as we use pdb.
+
+
