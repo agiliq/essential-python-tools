@@ -60,11 +60,11 @@ This command creates the virtualenv and automatically loads it for us.
     virtualenvwrapper.user_scripts creating /Users/anmol/.virtualenvs/testEnv/bin/get_env_details
     (testEnv) $ 
 
-To come out of the virtualenv use command :code:`deactivate`
+To come out of the virtualenv use command :code:`$ deactivate`
 
 If you want to create a virtualenv with a different version of python like python3(which should be globally installed) then specify the python version using :code:`-p python3`
 
-.. To create the virtualenv with different version of python, use this command :code:`mkvirtualenv testEnv -p python3`
+.. To create the virtualenv with different version of python, use this command :code:`$ mkvirtualenv testEnv -p python3`
 
 My system created the virtualenv with my default python which is python2.7.
 If you also have python3 installed in your system and you want to create the virtualenv with python3 then create the virtualenv with this command :code:`mkvirtualenv testEnv -p python3`
@@ -79,6 +79,15 @@ If you also have python3 installed in your system and you want to create the vir
     (testEnv) $ python -V
     Python 3.6.4
     (testEnv) $
+
+
+
+To list all virtualenvs present in the system run command: :code:`$ workon`
+`workon` lists all the virtualenvs present in the system.
+
+To start working in a virtualenv:   :code:`$ workon <name_of_virtualenv>`
+
+To remove/delete a virtualenv:      :code:`$ rmvirtualenv <name_of_virtualenv>`
 
 
 
@@ -118,7 +127,7 @@ And to exit the virtualenv run :code:`exit`
 
 pip, requirement.txt and pipfile
 ++++++++++++++++++++++++++++++++++++++++
-`Pip <https://pip.pypa.io/en/stable/>`_ is a package management system used to install and manage software packages written in Python.
+`Pip <https://pip.pypa.io/en/stable/>`_(Python's package manager) is a package management system used to install and manage software packages written in Python. 
 
 To check pip version:
     :code:`pip -V`
@@ -141,7 +150,7 @@ To install/unistall a package using pip:
 
 **Requirement.txt**   is a text file which stores the list of all the pip packages with versions which are required to run the project.
 
-To create a requirements.txt file do :code:`pip freeze > requirements.txt`
+To create a `requirements.txt` file do :code:`pip freeze > requirements.txt`
 
 A sample requirements.txt file 
 
@@ -189,9 +198,13 @@ Poetry can be installed using pip, but the recommended way to install is
 To use poetry run this command:
 :code:`poetry init`
 
-This command will help you create a :code:`pyproject.toml` file interactively by prompting you to provide basic information about your package.
+This command will help you create a :code:`pyproject.toml` file interactively by prompting you to provide basic information about your package. 
 
-A sample pyproject.toml
+**pyproject.toml** is the main file which manages all the dependencies.
+
+    `pyproject.toml <https://poetry.eustace.io/docs/pyproject/>`_ file contains all the details of the project. It mentions the dependencies/dev-dependencies and also other details like name, description, author, version etc  of project.
+
+A sample `pyproject.toml`
 
 .. code-block:: shell
 
@@ -207,8 +220,9 @@ A sample pyproject.toml
         [tool.poetry.dev-dependencies]
 
 
-To add a package :
+To add/remove a package :
 :code:`poetry add <package>`
+:code:`poetry remove <package>`
 
 
 To add a package as a development-dependency:
@@ -223,17 +237,19 @@ A comparision of the tools
 ++++++++++++++++++++++++++++++++++++++++
 
 Python/pip Standard
-=========
+===========================
 Both pipenv and virtualenvwrapper are officially recommended and are considered as standards.
 
 Easy of use.
-=========
+==================
 Pipenv and virtualenvwrapper both are easy to use. 
 .. Poetry is 
 
 
 
-For beginners I suggest, start with virtualenv and then virtualenvwrapper.
+For beginners I suggest, start with `virtualenv/virtualenvwrapper` and then use `pipenv` .   
+
+
 
 
 

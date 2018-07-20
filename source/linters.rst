@@ -23,8 +23,8 @@ PEP8 coding conventions are:
 
 
 pycodestyle
-++++++++        
-`Pycodestyle <https://github.com/PyCQA/pycodestyle>`_ (Formerly PEP8) is the official tool to check the python code against the style conventions of PEP8 python. 
+++++++++++++++++        
+`Pycodestyle <https://github.com/PyCQA/pycodestyle>`_ (Formerly PEP8) is the official linter tool to check the python code against the style conventions of PEP8 python. 
 
 To install it:
 :code:`pip install pycodestyle`.
@@ -109,7 +109,7 @@ We can also make pycodestyle show the error and the description of how to solve 
 pylint
 ++++++++
 
-`Pylint <https://www.pylint.org/>`_ is a source code, bug and quality checker for the Python. It has more verification checks and options than just PEP8(Python style guide).
+`Pylint <https://www.pylint.org/>`_ is a python linter which checks the source code and also acts as a bug and quality checker. It has more verification checks and options than just PEP8(Python style guide).
 
 This is the most commonly used tool for linting in python.
 
@@ -168,7 +168,7 @@ As we can see `pylint` has more error/warning checks and options than pep8. And 
 pyflakes
 +++++++++
 
-`pyflakes <https://pypi.org/project/pyflakes/>`_ is a verification tool which checks for Python files for errors.
+`pyflakes <https://pypi.org/project/pyflakes/>`_ is a verification tool(linter) which checks for Python files for errors.
 Pyflakes doesn’t verify the style at all but verify only logistic errors like the syntax tree of each file individually.
 
 To install it:
@@ -209,7 +209,7 @@ Usage:
 
 The response we got when we did :code:`black test_script.py` is
 
-.. image:: black-formatter.png
+.. image:: _static/black-formatter.png
 
 
 And the formatted code is
@@ -333,7 +333,7 @@ This is the formatted code.
 ------------
 
 Conclusion
-+++++++++ 
++++++++++++++++++ 
 Linting:
 
     `Pylint` has the most detailed way of showing the error and warnings(and it also gives the code rating).
