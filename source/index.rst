@@ -15,6 +15,7 @@ Essential Python Tools
    environment_management   
    code_management
    documentation
+   deployment
 
 
 
