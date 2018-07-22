@@ -74,6 +74,30 @@ Using pdb, we can set `breakpoints <https://en.wikipedia.org/wiki/Breakpoint>`_ 
 
     **pbd help speed up the debugging process a lot faster than using simple print() statements everywhere.**
 
+The easiest way to use pdb is to call it in the code you’re working on.
+
+.. code-block:: python
+
+    import pdb; pdb.set_trace()  
+
+As soon as the interpreter reaches this line, we’ll receive a command prompt on the terminal where we’re running the program. This is a general Python prompt, but with some new commands.
+
+   + l (list) - Display 11 lines around the current line.
+   + r (return) - Continue execution until the current function returns.
+   + b (break) - Set a breakpoint (depending on the argument provided).
+   + n (next) - Continue execution until the next line in the current function is reached.
+   + s (step) - Execute the current line, stop at the first possible occasion.
+   + j (jump) - Jump to the next line to be executed.
+   + c (continue) - Creates a breakpoint in the program execution.
+
+for more commands `check <https://docs.python.org/3/library/pdb.html#debugger-commands>`_
+
+If we want to run the application from the debugger and set breakpoints without any changes in the source code, then we need to execute the application with the debugger, use the command 
+
+.. code-block:: python
+    
+    $ python -m pdb hello.py
+
 
 
 ipdb

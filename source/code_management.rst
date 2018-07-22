@@ -43,6 +43,8 @@ Gitlab offers unlimited free public/private repositories, where as Github offers
 
 GitLab offers all the features of Github plus builtin CI/CD service (Continuous Integration & Continuous Delivery), and more authentication levels. 
 
+Gitlab(Community Edition) is open-source and can be installed in private servers.
+
 
 
 
