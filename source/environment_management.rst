@@ -1,11 +1,11 @@
 Environment Management
------------------------
+----------------------------
 
 virtualenv and virtualenvwrapper
 ++++++++++++++++++++++++++++++++++++++++
 
 virtualenv
-=========
+==================
 
 `virtualenv <https://virtualenv.pypa.io/en/stable/>`_ is a popular tool for creating isolated python environments without affecting other projects.  
 
@@ -23,7 +23,7 @@ Once we have virtualenv installed, we have to create the a directory for our vir
 
 
 virtualenvwrapper
-=========
+===========================
 
 `virtualenvwrapper <http://virtualenvwrapper.readthedocs.io/en/latest/>`_ is an just like an extension to `virtualenv` which simplifies the commands to use and manage. 
 
