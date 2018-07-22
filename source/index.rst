@@ -6,13 +6,15 @@
 Essential Python Tools
 ==========================
 
+.. image:: book-cover-ept.png
+
 .. toctree::
    :maxdepth: 2
    :caption: Table of Contents:
 
    repl_and_debugging
-   linters  
-   environment_management   
+   linters
+   environment_management
    code_management
    documentation
    deployment
