@@ -33,6 +33,36 @@ It provides a basic suite of operations for executing local or remote shell comm
     the remote machine. It interact with the remote machines that we specify as if
     they were local. 
 
+**Fabric can be used for many things, including deploying, restarting servers,
+stopping and restarting processes.** 
+
+
+To install fabric :code:`pip install fabric`
+
+Fabric, provides a command line utility, :code:`fab` which looks for a fabfile.py, which is a file containing Python code. 
+example fabfile:
+
+.. code-block:: python
+
+    from fabric.api import run
+    def diskspace():
+        run('df')
+
+
+The above example provides a function to check free disk space,  :code:`run` command executes a remote command on all specific hosts, with user-level permissions.
+
+The fabfile should be in the same directory where we run the Fabric tool. 
+We write all our functions, roles, configurations, etc in a fabfile.
+
+.. and host type, as well as defining a group of hosts on which to run
+
+
+
+
+
+
+
+
 
 Ansible
 ---------
@@ -76,3 +106,9 @@ Amazon Web Services
 It offers many featured services for compute, storage, networking, analytics, application services, deployment, identity and access management, directory services, security and many more cloud services.
 
 To use AWS for python, check `this <https://aws.amazon.com/developer/language/python/>`_
+
+We use `Boto3 <https://github.com/boto/boto3>`_ (python package) which provides interfaces to Amazon Web Services, it makes us easy to integrate our Python application, library, or script with AWS services 
+
+Boto3 is the Amazon Web Services (AWS) Software Development Kit (SDK) for Python, which allows Python developers to write software that makes use of services like Amazon S3(Simple storage service) and Amazon EC2(Elastic Compute Cloud). 
+ 
+.. Boto provides an easy to use, object-oriented API as well as low-level direct service access.
