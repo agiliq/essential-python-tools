@@ -11,6 +11,10 @@ git
 
 The main purpose of Git is to manage software development projects and its files, as they are changing over time. It stores the information in a repository.
 
+To install git check `this <https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>`_ . 
+
+To learn git check `this <https://git-scm.com/docs/gittutorial>`_ and `this <https://try.github.io/>`_
+
 
 
 
