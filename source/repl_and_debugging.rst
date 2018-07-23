@@ -11,7 +11,7 @@ You can install Ipython via pip( :code:`pip install ipython` ) but we suggest in
 
 Anaconda is an open-source Python distribution which provides us with many python tools. When installed, Anaconda includes: core Python language, IPython, Jupyter Notebook and many data-science packages.
 
-To use Ipython:
+To use Ipython
 
 .. code-block:: python
 
@@ -44,7 +44,7 @@ It is one of the popular data science tool in python.
 
 It has replaced IPython notebook, which initially supported only python but now later started supporting many languages. IPython notebooks was started to make working with python easy and interactive. IPython provides python backend (also known as kernel) for Jupyter
 
-If you installed Python using Anaconda, then you have the Jupyter Notebook installed. To start the notebook:
+If you installed Python using Anaconda, then you have the Jupyter Notebook installed. To start the notebook
 
 .. code-block:: python
 
