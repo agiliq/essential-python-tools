@@ -50,7 +50,7 @@ Gitlab(Community Edition) is open-source and can be installed in private servers
 
 
 
-Countinous Integration
+Continous Integration
 -------------------------
 Continuous Integration (CI) is a development practice which automates the build and testing process of the code.
 Continuous Integration automates the build and testing processes. The main objective of CI is to test code for every push made to the repository. We need to have a testing framework for the test in CI.
@@ -66,9 +66,9 @@ CI makes code integration a simple, fast process that is part of the everyday de
 
 
 
-.. Countinous Delivery
+.. Continous Delivery
 .. -------------------------
-.. Countinous Delivery comes after Continuous Integration, it automates the software release and deployment process.
+.. Continous Delivery comes after Continuous Integration, it automates the software release and deployment process.
 
 
 gitlab-ci
@@ -95,3 +95,38 @@ Setting up CircleCI:
 
 To set up `.circle-ci.yml` file follow this `official doc <https://circleci.com/docs/enterprise/quick-start/>`_   and
 for python apps  - `config circleci for python apps <https://circleci.com/docs/2.0/language-python/>`_
+
+
+
+Travis CI
+===========
+`Travis CI <https://travis-ci.org/>`_ is a hosted continous integration service used to build and test the projects hosted at github.com. It is free for all open-source projects hosted on Github.com .
+
+Travis CI builds and runs the tests every time we push the code to the github repo or put a pull request to the repo.
+
+To use travis-ci we must and a file :code:`.travis.yml` to our repository. And link our github account with travis-ci by logging in `travis-ci website <https://travis-ci.org/>`_ 
+
+
+Sample :code:`.travis.yml` file 
+
+
+.. code-block:: python
+
+
+    language: python
+    python:
+    - 2.7
+    - 3.6
+
+    # command to install dependencies
+    install:
+    - pip install -r requirements.txt
+    # command to run tests
+    script:
+    - pytest # or py.test To test for Python versions 3.5 and below
+
+    branches:
+    - master
+    - dev
+
+This will get your project tested on all the listed Python versions by running the given script, and will build the master and dev branch only. 

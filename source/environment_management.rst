@@ -127,14 +127,25 @@ And to exit the virtualenv run :code:`exit`
 
 pip, requirement.txt and pipfile
 ++++++++++++++++++++++++++++++++++++++++
-`Pip <https://pip.pypa.io/en/stable/>`_(Python's package manager) is a package management system used to install and manage software packages written in Python. 
+`Pip <https://pip.pypa.io/en/stable/>`_ (Python's package manager) is a package management system used to install and manage software packages written in Python. 
 
 To check pip version:
     :code:`pip -V`
 
 
 To get pip:
-    :code:`python get-pip.py`
+
+First download pip 
+
+.. code-block:: shell
+
+    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+
+Then run this command
+
+.. code-block:: shell
+
+    python get-pip.py
 
 List all packages installed :
     :code:`pip freeze`   
