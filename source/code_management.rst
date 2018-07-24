@@ -13,14 +13,14 @@ The main purpose of Git is to manage software development projects and its files
 
 To install git check `this <https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>`_ . 
 
-To learn git check `this <https://git-scm.com/docs/gittutorial>`_ and `this <https://try.github.io/>`_
+To learn git check `official-tutorial <https://git-scm.com/docs/gittutorial>`_ and `github-tutorial <https://try.github.io/>`_
 
 
 
 
 
 github
----------
+------------
 `GitHub <https://github.com/>`_ is a web-based hosting service for version control using Git. 
 It provides access control and several collaboration features such as issue tracking, feature requests, documentation, and wikis for every project.
 
@@ -35,7 +35,7 @@ It is the most-widely used web-based hosting service, and it has the largest num
 
 
 gitlab
--------
+----------
 `GitLab <https://about.gitlab.com/>`_ is a web-based and self-based hosting service for version control using Git. 
 Gitlab is free and open-source. 
 
@@ -72,7 +72,7 @@ CI makes code integration a simple, fast process that is part of the everyday de
 
 
 gitlab-ci
-=======
+==============
 `Gitlab Continuous Integration(CI) <https://about.gitlab.com/features/gitlab-ci-cd/>`_ is a open-source CI service that is included in gitlab and can be used for all projects in gitlab. 
 
 To use GitLab CI, you first need to add a :code:`.gitlab-ci.yml` file to the root directory of your repository, as well as configure your GitLab project to use a Runner. Afterwards, every commit or push will trigger the CI pipeline that has three stages: build, test and deploy.
@@ -99,18 +99,18 @@ for python apps  - `config circleci for python apps <https://circleci.com/docs/2
 
 
 Travis CI
-===========
+==============
 `Travis CI <https://travis-ci.org/>`_ is a hosted continous integration service used to build and test the projects hosted at github.com. It is free for all open-source projects hosted on Github.com .
 
 Travis CI builds and runs the tests every time we push the code to the github repo or put a pull request to the repo.
 
-To use travis-ci we must and a file :code:`.travis.yml` to our repository. And link our github account with travis-ci by logging in `travis-ci website <https://travis-ci.org/>`_ 
+To use `travis-ci` we must add a file :code:`.travis.yml` to our repository. And link our github account with travis-ci by logging in to `travis-ci website <https://travis-ci.org/>`_  
 
 
 Sample :code:`.travis.yml` file 
 
 
-.. code-block:: python
+.. code-block:: shell
 
 
     language: python
@@ -121,6 +121,7 @@ Sample :code:`.travis.yml` file
     # command to install dependencies
     install:
     - pip install -r requirements.txt
+
     # command to run tests
     script:
     - pytest # or py.test To test for Python versions 3.5 and below
@@ -129,4 +130,14 @@ Sample :code:`.travis.yml` file
     - master
     - dev
 
-This will get your project tested on all the listed Python versions by running the given script, and will build the master and dev branch only. 
+This file will get our project tested on all the listed Python versions by running the given script, and it will build the master and dev branch only. 
+
+The CI Environment uses separate virtualenv instances for each Python version.
+
+By default Travis CI uses :code:`pip` to manage Python dependencies. If you have a requirements.txt file, Travis CI runs :code:`pip install -r requirements.txt` during the :code:`install` phase of the build.
+
+Python projects need to provide the :code:`script` key in their `.travis.yml` to specify what command to run tests with.
+
+.. When we specify :code:`language: python` in :code:`.travis.yml` , our tests will run inside a virtualenv.
+
+ There are a lot more options which we can enable in travis-ci file. The `travis-ci docs <https://docs.travis-ci.com/user/languages/python/>`_ explain all of these options.
