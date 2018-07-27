@@ -10,3 +10,4 @@ Deployment
    fabric
    gcp
    aws
+   example_of_django_deployment

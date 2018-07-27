@@ -17,7 +17,7 @@ To use Ipython
 
     $ ipython
 
-IPython has more features than python like Syntax highlighting, Proper Intendation,
+IPython has more features than python like Syntax highlighting, Proper Intendation, tab-completion, documentation
 
 **Syntax highlighting**
 
