@@ -1,4 +1,4 @@
-Deploy a Python Application( django-app ) using gunicorn, nginx, and supervisord
+Deploying a Django application using Gunicorn, Nginx, and Supervisord
 ------------------------------------------------------------------------------------------------------------
 
 This chapter tells the basics of deploying a `django application <https://www.djangoproject.com/>`_ using gunicorn, nginx and supervisord.
@@ -47,13 +47,12 @@ A Unix server for deploying the app , connected with a SSH(preferred).
 Let's start with our server
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Once we create our server and get connected to it via SSH, then to log in to that server we have to do 
+Once we create our server and let's login to the server via SSH, 
 
 .. code-block:: shell
 
     $ ssh root@IP_ADDRESS_OF_SERVER
 
-This will get us connected with the server.
 
 Now we have to install the prerequisites, run these commands 
 
@@ -85,7 +84,7 @@ Let's clone the repo in home folder, pull the application from Git, we use this 
 
 .. code-block:: shell
 
-    $ cd /home/
+    $ cd ~
     $ git clone https://github.com/anmolakhilesh/django-polls-rest
     
 Now we have to add permissions to the :code:`manage.py`  file
@@ -94,7 +93,7 @@ Now we have to add permissions to the :code:`manage.py`  file
 .. code-block:: shell
 
     $ cd /django-polls-rest/
-    $ chmod 755   manage.py 
+    $ chmod 755 manage.py 
 
 
 Now install the requirements
@@ -110,19 +109,19 @@ Create a file :code:`.env` and add these lines in that
 
 .. code-block:: shell
 
-        export POSTGRES_DB = pollsdb
-        export POSTGRES_USER = polls_admin
-        export POSTGRES_PASSWORD = polls_password
-        export POLLSAPI_PG_HOST = 127.0.0.1
+        $ export POSTGRES_DB = pollsdb
+        $ export POSTGRES_USER = polls_admin
+        $ export POSTGRES_PASSWORD = polls_password
+        $ export POLLSAPI_PG_HOST = 127.0.0.1
 
 
 Create a postgres Database
 
 .. code-block:: shell
     
-    sudo -u postgres psql
+    $ sudo -u postgres psql
 
-After running the above function, we will be logged inside PostgreSQL terminal, now lets create our db and user
+After running the above command, we will be logged inside PostgreSQL terminal, now lets create our db and user
 
 .. code-block:: shell
 
@@ -145,12 +144,15 @@ Now as the DB is ready , we can run migrations command inside the repo folder.
 
 .. code-block:: shell
 
-    (env-name) $ python manage.py makemigrations
+    # migrations
     (env-name) $ python manage.py migrate
     
-    # Create a superuser  
+    # Create a supervisor, let's  
     (env-name) $ python manage.py createsuperuser
 
+
+
+Now postgres-db is setted, now we have to set up the server
 
 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -171,7 +173,7 @@ After installing gunicorn , now run it
     (env-name) $ gunicorn polls_rest.wsgi
 
 It will run the app , we can check  :code:`IP_ADDRESS_OF_SERVER:8000` , :code:`IP_ADDRESS_OF_SERVER:8000/admin` .
-It will not have any css , as the gunicorn only serves the application. We can server static files using `nginx` .
+It will not have any css , as the gunicorn only serves the application. We will be serving static files using `nginx` .
 
 To exit it press :code:`Ctrl+C` .
 
@@ -196,7 +198,7 @@ To have a `gunicorn config file <http://docs.gunicorn.org/en/stable/configure.ht
 
 Using nginx
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-By using gunicorn, we were able to run the application, but without styles as the gunicorn only runs the application and does not serve the static files, and django does not serve static file except in development.
+By using gunicorn, we were able to run the application, but without styles as the gunicorn only runs the application and does not serve the static files django does not serve static file except in development.
 
 We will use :code:`nginx` to serve the static files , nginx will first get the request, and it will send it to gunicorn. 
 
@@ -209,47 +211,52 @@ To install nginx
     $ sudo apt-get install nginx
 
 
-Now we have to configure nginx to tell it what to do.
+.. Now we have to configure nginx to tell it what to do.
+
+let's configure nginx
 
 So, **create a file** :code:`/etc/nginx/sites-available/pollsapp` and add the following 
 
 .. code-block:: shell   
 
     server {
-        listen 8000;
-        server_name SERVER_DOMAIN_OR_IP_ADDRESS_OF_SERVER;
+        listen 80;   #L1
+        server_name SERVER_DOMAIN_OR_IP_ADDRESS_OF_SERVER;   #L2
 
-        location = /favicon.ico { access_log off; log_not_found off; }
+        location = /favicon.ico { access_log off; log_not_found off; }   #L3
 
-        location /static/ {
-                root /home/django-polls-rest;
+        location /static/ {                  #L4
+                root /home/django-polls-rest;        
         }
 
-        location / {
+        location / {                        #l5
                 include proxy_params;
-                proxy_pass http://unix:/home/django-polls-rest/polls_rest.sock;
-        }
+                proxy_pass http://unix:/home/django-polls-rest/polls_rest.sock;        
+        }   
     }
 
 
-In the first and the secound line we are mentioning the port :code:`8000` and the server where the nginx app should listen to.
-and the third line is telling the nginx, to ignore any errors related to the favicon.
-The fourth line tells, static files will have a standard URI prefix of :code:`static/` and should be looked for in :code:`~/django-polls-rest/static/` folder.
-and the last location block tells the socket(gunicorn socket) to communicate.
+
++ #L1 and #L2 lines defines where our nginx server should run.
++ #L3 line ignores any errors related to the favicon.
++ #L4 block :code:`location /static/` defines the location of static files.
++ #L5 block :code:`location /` tells the socket(gunicorn socket) to communicate.
+
+.. will have a standard URI prefix of :code:`static/` and should be looked for in :code:`~/django-polls-rest/static/` folder.
 
 
-After this, we have to enable this file by linking the the :code:`sites-enabled` folder.
-
-
-
-The path :code:`/home/django-polls-rest` will be the application path.
+After this, we have to enable this config file by linking with the :code:`sites-enabled` folder.
 
 .. code-block:: shell  
 
     $ ln -s /etc/nginx/sites-available/pollsapp /etc/nginx/sites-enabled
 
 
-We link the above file  to :code:`sites-enabled` because that will be included in the main nginx settings file :code:`/etc/nginx/nginx.conf`
+.. The path :code:`/home/django-polls-rest` will be the application path.
+
+
+
+We link the above file  to :code:`sites-enabled` , so that it will be included in the main nginx settings file :code:`/etc/nginx/nginx.conf`
 
 
 After enabling the config file , we can check nginx configuration by 
@@ -264,7 +271,7 @@ If the configuration file is correct , then we should see this
 .. image:: _static/images/nginx-t.png
 
 
-Now we have to mention the static files of our app in the :code:`settings.py`   file . So add this line in `settings.py`
+Now we have to mention the static files directory of our app in :code:`settings.py`   file . So add this line in `settings.py`
 
 .. code-block:: python  
 
@@ -285,8 +292,8 @@ Let's run the app
     (env-name) $ gunicorn --daemon --workers 3 --bind  unix:/home/django-polls-rest/polls_rest.sock polls_rest.wsgi
 
 
-The :code:`/home/django-polls-rest/polls_rest.sock` file is a unix-socket file will be created automatically. 
-And this file will enable Gunicorn and Nginx to communicate to each other.    
+The :code:`/home/django-polls-rest/polls_rest.sock` file is a unix-socket file which will be created automatically. 
+And this file will enable Gunicorn and Nginx to communicate with each other.    
     
 
 Now Restart Nginx for changes to take effect.
@@ -297,15 +304,15 @@ Now Restart Nginx for changes to take effect.
 
 This will run our app in the :code:`http://IP_ADDRESS` 
 
- Point to remember , check :code:`ALLOWED_HOSTS` in  :code:`settings.py` to have you host name or ip address.
+ Point to remember , check :code:`ALLOWED_HOSTS` in  :code:`settings.py` to have you host name or ip address of server.
 
  
-Let's us Supervisord
+Configuring Gunicorn with Supervisord
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 `Supervisor <http://supervisord.org/>`_ is a process monitoring tool, which can restart any process if the process dies or gets killed for some reason.
 
-At present we are manually starting gunicorn in daemon to run our app, Suppose if this gunicorn process closes or gets killed , then we have to manually start it again.
-To automate the process of restarting we use `Supervisord`, So that supervisor controls the gunicorn process.
+At present we are manually starting gunicorn in daemon to run our app, Suppose if this gunicorn process closes or gets killed due to some reason then we have to manually start it again.
+To monitor our processes we use `Supervisord`, So that supervisor controls the gunicorn process.
 
 To install supervisord
 
@@ -320,36 +327,32 @@ the :code:`conf.d` folder will have all our config files.
 
 .. code-block:: shell
 
-    [program:pollsapi]
-    directory=/home/django-polls-rest/polls_rest 
-    command=/home/.virtualenvs/demo-polls-1/bin/gunicorn --workers 3 --bind unix:/home/django-polls-rest/polls_rest.sock polls_rest.wsgi
-    autostart=true
-    autorestart=true
-    stderr_logfile=/var/log/pollsapi.err.log
-    stdout_logfile=/var/log/pollsapi.out.log
+    [program:pollsapi]   #L1
+    directory=/home/django-polls-rest/polls_rest     #L2
+    command=/home/.virtualenvs/demo-polls-1/bin/gunicorn --workers 3 --bind unix:/home/django-polls-rest/polls_rest.sock polls_rest.wsgi      #L3
+    autostart=true       #L4
+    autorestart=true     #L5
+    stderr_logfile=/var/log/pollsapi.err.log      #L6
+    stdout_logfile=/var/log/pollsapi.out.log      #L7
 
 
 Let's understand the config file we have written,
 
-:code:`[program:pollsapi]` this tells us that the program name is `pollsapi`
-
-This name is used in commands like
++ #L1 line :code:`[program:pollsapi]` names the program( or process ) as `pollsapi`, which can be used as
 
 .. code-block:: shell
 
-    $ sudo supervisorctl start myproject
+    $ sudo supervisorctl start pollsapi
 
 
-The :code:`directory` tells us the path to our project.
-
-The :code:`command` is the command to start our project
-
-And :code:`autostart` tells the application to start on system boot and :code:`autorestart` will restart the app when it closes for some reason.
-
-:code:`stderr_logfile` which will have the error logs & :code:`stdout_logfile` will have non-error logs.
++ #L2 line :code:`directory` is the path to our project.
++ #L3 line :code:`command` is the command to start our project
++ #L4 lines :code:`autostart` tells the script to start on system boot.
++ #L5 line :code:`autorestart` tells the script to restart when it closes for some reason
++ #L6 :code:`stderr_logfile` which will store the error logs &  #L7 :code:`stdout_logfile` will store the non-error logs.
 
 
-Now to save the file, run these command
+Now lets save this file and update supervisor
 
 .. code-block:: shell
 
@@ -357,7 +360,7 @@ Now to save the file, run these command
     $ sudo supervisorctl update
     $ sudo supervisorctl reload
 
-We have just updated and reloaded the supervisor .
+Check the supervisor status .
 
 .. code-block:: shell
 
@@ -374,14 +377,18 @@ To check gunicorn processes
     
     $ ps ax | grep gunicorn
 
+This command lists all the processes running with gunicorn 
 
-To check if the app is serving by gunicorn , do curl
+
+To check if the app is running , let's do curl
 
 .. code-block:: shell  
 
     $ curl 0.0.0.0:8000
 
-let’s restart our nginx 
+.. this will show if the app is running or not    
+
+After configuring gunicorn with supervisor, let's restart our nginx 
 
 .. code-block:: shell  
 
