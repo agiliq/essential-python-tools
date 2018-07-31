@@ -6,8 +6,8 @@ Deployment
    :caption: Various Deployment Options:
 
    docker
-   ansible
    fabric
+   ansible
    gcp
    aws
    example_of_django_deployment

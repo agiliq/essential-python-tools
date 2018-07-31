@@ -1,4 +1,4 @@
-Deploying a Django application using Gunicorn, Nginx, and Supervisord
+Deploying a Django application
 ------------------------------------------------------------------------------------------------------------
 
 This chapter tells the basics of deploying a `django application <https://www.djangoproject.com/>`_ using gunicorn, nginx and supervisord.
