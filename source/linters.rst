@@ -384,7 +384,7 @@ black
 ++++++
 
 `black <https://black.readthedocs.io/en/stable/>`_  is a python code auto-formatter. 
-Black reformats entire files in place and also formats the strings to have double-qoutes.
+Black reformats entire files in place and also formats the strings to have double-quotes.
 
 `Black` is not configurable(except for line-length).
 
@@ -577,4 +577,4 @@ Linting:
 
 .. Formatter:
     
-..    `Black` and `yapf` are the most popular ones, while black is still in beta .
+..    `Black` and `yapf` are the most popular ones, while black is still in beta.
